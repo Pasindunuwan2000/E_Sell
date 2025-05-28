@@ -4,17 +4,12 @@ import jakarta.persistence.*;
 
 @Entity
 public class Product {
-
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-    private double price;
-    private int stock;
-
-    @ManyToOne
-    private Seller seller;
-
-    // Getters and Setters
+    private String description;
+    private Double price;
+    private Integer stock;
+    
 }
