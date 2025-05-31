@@ -1,15 +1,32 @@
-package com.esell.model;
+package com.esell.Model;
 
-import jakarta.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Product {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String description;
-    private Double price;
-    private Integer stock;
-    
+    private BigDecimal price;
+    private Integer quantity;
+    private String category;
+    private String imageUrl;
+    private Boolean isActive;
+    private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "product")
+    private List<CartItem> cartItems;
+
+    @OneToMany(mappedBy = "product")
+    private List<OrderItem> orderItems;
 }
+

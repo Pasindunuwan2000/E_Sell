@@ -1,31 +1,103 @@
-package com.esell.model;
+package com.esell.Model;
 
-import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class User {
+public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
+    private Long id;
 
-    @Column(nullable = false, unique = true)
-    protected String username;
+    private String name;
+    private String email;
+    private String passwordHash;
+    private String phone;
+    private String role;
+    private LocalDateTime createdAt;
 
-    @Column(nullable = false)
-    protected String password;
+    @OneToOne(mappedBy = "user")
+    private Cart cart;
 
-    @Column(nullable = false)
-    protected String email;
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 
-    @Enumerated(EnumType.STRING)
-    protected Role role;
+	public Long getId() {
+		return id;
+	}
 
-    public enum Role {
-        ADMIN,
-        CUSTOMER,
-        SELLER
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPasswordHash() {
+		return passwordHash;
+	}
+
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+    
+    
 }
