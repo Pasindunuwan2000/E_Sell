@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-//import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-//import { toast } from '@/hooks/use-toast';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { toast } from '../hooks/use-toast';
 
 const Login = () => {
   const [email, setEmail] = useState('');
